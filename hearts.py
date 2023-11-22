@@ -135,6 +135,7 @@ class Player:
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.name!r}, {self.hand})"
 
+
 class HumanPlayer(Player):
     def play_card(self, played: List[Card], hearts_broken: bool) -> Card:
         """Play a card from a human player's hand"""
@@ -153,6 +154,7 @@ class HumanPlayer(Player):
         self.hand.play(card)
         print(f"{self.name} => {card}")
         return card
+
 
 class HeartsGame:
     def __init__(self, *names: str) -> None:

@@ -1,17 +1,28 @@
-# hearts.py
+# 01_hearts.py
 
 from collections import Counter
+from enum import Enum
 import random
 import sys
 from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 from typing import overload
 
+import colorama
+
 
 class Card:
     SUITS = "♠ ♡ ♢ ♣".split()
     RANKS = "2 3 4 5 6 7 8 9 10 J Q K A".split()
+    from colorama import Fore, Back, Style
 
-    def __init__(self, suit: str, rank: str) -> None:
+    def __init__(
+            self,
+            suit: str,
+            rank: str,
+            back: colorama.Back = Back.WHITE,
+            style: colorama.Style = Style.BRIGHT,
+
+    ) -> None:
         self.suit = suit
         self.rank = rank
 

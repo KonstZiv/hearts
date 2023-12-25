@@ -27,18 +27,18 @@ class Deck:
             random.shuffle(cards)
         return cls(cards)
 
-    def deal(self, num_hands):
+    def deal(self, num_hands: int):
         """Deal the cards in the deck into a number of hands"""
         cls = self.__class__
         return tuple(cls(self.cards[i::num_hands]) for i in range(num_hands))
 
 
 class Player:
-    def __init__(self, name, hand):
+    def __init__(self, name: str, hand: Deck) -> None:
         self.name = name
         self.hand = hand
 
-    def play_card(self):
+    def play_card(self) -> Card:
         """Play a card from the player's hand"""
         card = random.choice(self.hand.cards)
         self.hand.cards.remove(card)
@@ -47,7 +47,7 @@ class Player:
 
 
 class Game:
-    def __init__(self, *names):
+    def __init__(self, *names: str) -> None: # розповісти про пакування-розпакування аргументів
         """Set up the deck and deal cards to 4 players"""
         deck = Deck.create(shuffle=True)
         self.names = (list(names) + "P1 P2 P3 P4".split())[:4]
@@ -55,7 +55,7 @@ class Game:
             n: Player(n, h) for n, h in zip(self.names, deck.deal(4))
         }
 
-    def play(self):
+    def play(self) -> None:
         """Play a card game"""
         start_player = random.choice(self.names)
         turn_order = self.player_order(start=start_player)
